@@ -35,7 +35,7 @@ public class KeepImportantInventory {
         modEventBus.addListener(this::commonSetup);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ConfigCommon.SPEC, "keep_important_inventory-client.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ConfigCommon.SPEC, "KeepImportantInventory-Common.toml");
 
     }
 
