@@ -43,7 +43,7 @@ public abstract class MixinPlayer {
     private void modifyExperienceDrop(CallbackInfoReturnable<Integer> cir) {
         Player self = (Player) (Object) this;
         if (self.isSpectator()) return;
-        cir.setReturnValue(XpUtil.orbPoints(XpUtil.totalPoints(self)));
+        cir.setReturnValue(XpUtil.orbPoints(XpUtil.totalPoints(self), self.getRandom()));
     }
 
 }

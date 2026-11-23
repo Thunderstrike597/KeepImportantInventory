@@ -1,6 +1,8 @@
 package net.kenji.keep_important_inventory.helpers;
 
 import net.kenji.keep_important_inventory.ConfigCommon;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 
 public final class XpUtil {
@@ -26,17 +28,22 @@ public final class XpUtil {
                 + Math.round(p.experienceProgress * xpNeededForNextLevel(p.experienceLevel));
     }
 
-    public static int droppedPoints(int total) {
-        return (int) Math.round(total * ConfigCommon.DROPPED_XP_AMOUNT.get());
+    public static int droppedPoints(int total, RandomSource randomSource) {
+        double value = Mth.randomBetween(randomSource, (float)(double)ConfigCommon.MIN_XP_DROPPED_AMOUNT.get(), (float)(double)ConfigCommon.MAX_XP_DROPPED_AMOUNT.get());
+        if(!ConfigCommon.DROP_XP_RANGED.get())
+            value = ConfigCommon.DROPPED_XP_AMOUNT.get();
+
+        return (int) Math.round(total * value);
+
     }
 
     /** The part of the dropped XP that spawns as orbs. */
-    public static int orbPoints(int total) {
-        return (int) Math.round(droppedPoints(total) * (1.0 - ConfigCommon.XP_LOST_AMOUNT.get()));
+    public static int orbPoints(int total, RandomSource randomSource) {
+        return (int) Math.round(droppedPoints(total, randomSource) * (1.0 - ConfigCommon.XP_LOST_AMOUNT.get()));
     }
 
-    public static int keptPoints(int total) {
-        return total - droppedPoints(total);
+    public static int keptPoints(int total, RandomSource randomSource) {
+        return total - droppedPoints(total, randomSource);
     }
 
     /** Sets a player's XP to an exact point total. */

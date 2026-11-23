@@ -18,6 +18,6 @@ public abstract class MixinServerPlayer {
         if (keepEverything || oldPlayer.isSpectator()) return;
         if(!ModHelper.isKeepInventory(self)) return;
 
-        XpUtil.setTotalPoints(self, XpUtil.keptPoints(XpUtil.totalPoints(oldPlayer)));
+        XpUtil.setTotalPoints(self, XpUtil.keptPoints(XpUtil.totalPoints(oldPlayer), oldPlayer.getRandom()));
     }
 }

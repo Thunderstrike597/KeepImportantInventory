@@ -5,6 +5,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Equipable;
@@ -51,7 +52,8 @@ public class InventoryUtil {
         int count = stack.getCount();
         if (count <= ConfigCommon.MIN_ITEMS_COUNT.get()) return count;
 
-        double exact = count * ConfigCommon.LOOT_DROPPED_PORTION.get();
+
+        double exact = count * (!ConfigCommon.DROP_LOOT_RANGED.get() ? ConfigCommon.LOOT_DROPPED_PORTION.get() : Mth.randomBetween(random, (float) (double)ConfigCommon.MIN_LOOT_DROPPED_AMOUNT.get(), (float) (double)ConfigCommon.MAX_LOOT_DROPPED_AMOUNT.get()));
         int amount = (int) exact;
         if (random.nextDouble() < exact - amount) amount++; // random rounding
         return Math.min(amount, count);
