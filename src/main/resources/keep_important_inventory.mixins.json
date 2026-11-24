@@ -7,7 +7,9 @@
   "mixins": [
     "MixinInventory",
     "MixinPlayer",
-    "MixinServerPlayer"
+    "MixinServerPlayer",
+    "MixinGameRules",
+    "MixinLivingEntity"
   ],
   "client": [
   ],

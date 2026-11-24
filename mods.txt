@@ -22,6 +22,13 @@
 # After any of them, reload the Gradle project in IntelliJ.
 #
 
-implementation corpse-316582
+
 implementation packet-fixer-689467
 implementation just-enough-resources-jer-240630
+implementation jcurios-309927
+implementation cosmetic-armor-reworked-237307
+implementation icarus-428151
+compileOnly corpse-316582
+compileOnly corail-tombstone-243707
+implementation gravestone-mod-238551
+

@@ -1,6 +1,7 @@
 package net.kenji.keep_important_inventory;
 
 import com.mojang.logging.LogUtils;
+import net.kenji.keep_important_inventory.gamerule.ModGameRules;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -31,6 +32,7 @@ public class KeepImportantInventory {
     public KeepImportantInventory() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        ModGameRules.register();
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
         // Register ourselves for server and other game events we are interested in

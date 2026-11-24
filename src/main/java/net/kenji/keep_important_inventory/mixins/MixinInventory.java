@@ -29,10 +29,11 @@ public abstract class MixinInventory {
 
     @Inject(method = "dropAll", at = @At("HEAD"), cancellable = true)
     private void modifyDropAll(CallbackInfo ci){
-        if(this.player instanceof ServerPlayer serverPlayer){
-            if(!ModHelper.isKeepInventory(serverPlayer))
+        if (!(this.player instanceof ServerPlayer sp) || !ModHelper.isKeepImportantInventory(sp)) return;
+
+        if(!ModHelper.isKeepImportantInventory(sp))
                 return;
-        }
+
         ci.cancel();
         InventoryUtil.dropItems(player, this.compartments);
     }
